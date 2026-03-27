@@ -3,118 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALHAYA - Boubou & Abaya Féminine</title>
-
+<title>ALHAYA – Boutique Abaya & Boubou</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-body{
-font-family: Arial, sans-serif;
-margin:0;
-background:#fff5f7;
-text-align:center;
-}
+/* ==== GLOBAL - Optimisé pour la vitesse ==== */
+body{margin:0;font-family:'Poppins',sans-serif;background:#fcfcfc;color:#333;}
+a{text-decoration:none;color:inherit;}
+.container{width:92%;margin:auto;max-width:1200px;}
 
-header{
-background:#b76e79;
-color:white;
-padding:20px;
-font-size:28px;
-font-weight:bold;
-}
+/* ==== HEADER ==== */
+header{background:white;padding:15px 0;box-shadow:0 1px 5px rgba(0,0,0,0.1);position:sticky;top:0;z-index:100;}
+header .container{display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:28px;font-weight:700;color:#b76e79; letter-spacing: 2px;}
+nav a{margin:0 12px;font-weight:500;cursor:pointer; transition: 0.3s;}
+nav a:hover{color:#b76e79;}
+.search-box{border:1px solid #ddd;border-radius:30px;padding:5px 15px;display:flex;align-items:center;width:250px;background: #f9f9f9;}
+.search-box input{border:none;outline:none;background: transparent;flex:1;padding: 5px;}
 
-.hero{
-padding:40px;
-}
+/* ==== HERO ==== */
+.hero{margin-top:10px;height:200px;background:#b76e79;display:flex;justify-content:center;align-items:center;color:white;font-size:32px;font-weight:600;text-align: center; border-radius: 0 0 20px 20px;}
 
-.hero h1{
-color:#b76e79;
-}
+/* ==== PRODUCT GRID ==== */
+.section-title{text-align:center;font-size:28px;margin:35px 0 20px;color:#b76e79; font-weight: 700;}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-bottom:50px;}
+.product-card{border:none;border-radius:15px;overflow:hidden;text-align:center;transition:0.3s;background:#fff;box-shadow: 0 4px 15px rgba(0,0,0,0.05);}
+.product-card:hover{transform:translateY(-10px);box-shadow:0 15px 30px rgba(0,0,0,0.12);}
+.product-card img{width:100%;height:380px;object-fit:cover; background: #eee;}
+.product-card h4{margin:15px 0 5px; font-size: 18px;}
+.product-card p{margin-bottom:15px;color:#b76e79;font-weight:700; font-size: 20px;}
+.btn{background:#b76e79;color:#fff;padding:12px 0;border:none;border-radius:25px;cursor:pointer;width:85%;margin:0 auto 20px;display: block; font-weight: 600; transition: 0.3s;}
+.btn:hover{background: #a05d67; transform: scale(1.02);}
 
-.products{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-padding:20px;
-}
+/* ==== CART POPUP ==== */
+#cartPopup{display:none;position:fixed;right:0;top:0;width:350px;height:100%;background:white;box-shadow:-5px 0 25px rgba(0,0,0,0.2);overflow:auto;z-index:1000; padding: 20px;}
+#cartPopup h3{border-bottom:2px solid #f4f4f4; padding-bottom: 15px; margin-bottom: 20px;}
 
-.product{
-background:white;
-padding:15px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-width:250px;
-}
-
-.product img{
-width:100%;
-border-radius:10px;
-}
-
-.whatsapp{
-margin:40px;
-}
-
-.whatsapp a{
-background:#25D366;
-color:white;
-padding:15px 25px;
-font-size:18px;
-border-radius:30px;
-text-decoration:none;
-}
-
-footer{
-background:#b76e79;
-color:white;
-padding:15px;
-margin-top:40px;
-}
+/* ==== FOOTER ==== */
+footer{background:#111;padding:40px;text-align:center;color:white;margin-top:50px;}
 </style>
-
 </head>
-
 <body>
 
 <header>
-ALHAYA
-<br>
-Boubou & Abaya Féminine
+  <div class="container">
+    <div class="logo">ALHAYA</div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Rechercher..." onkeyup="searchProduct()">
+      <i class="fa fa-search" style="color:#888;"></i>
+    </div>
+    <nav>
+      <a onclick="showSection('shop')">Boutique</a>
+      <a onclick="showCart()" style="position: relative;">🛒 <span id="cartCount" style="color:#b76e79; font-weight: bold;"></span></a>
+    </nav>
+  </div>
 </header>
 
-<section class="hero">
-<h1>Bienvenue chez ALHAYA</h1>
-<p>Découvrez nos magnifiques boubous et abayas élégantes pour femmes.</p>
-</section>
-
-<section class="products">
-
-<div class="product">
-<img src="https://via.placeholder.com/250">
-<h3>Boubou Élégant</h3>
-<p>Abaya chic pour toutes occasions</p>
+<div class="hero">
+  <div>
+    Collections Ramadan 2026<br>
+    <small style="font-size: 16px; font-weight: 300;">L'élégance à l'ivoirienne</small>
+  </div>
 </div>
 
-<div class="product">
-<img src="https://via.placeholder.com/250">
-<h3>Abaya Moderne</h3>
-<p>Style moderne et confortable</p>
+<div class="container" id="shop">
+  <h2 class="section-title">Nos Nouvelles Abayas</h2>
+  <div class="product-grid" id="productGrid"></div>
 </div>
 
-<div class="product">
-<img src="https://via.placeholder.com/250">
-<h3>Boubou Luxe</h3>
-<p>Qualité premium</p>
-</div>
-
-</section>
-
-<div class="whatsapp">
-<a href="https://wa.me/2250778136527">Commander sur WhatsApp</a>
+<div id="cartPopup">
+  <h3>🛒 Votre Panier</h3>
+  <div id="cartItems"></div>
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+  <h3 style="text-align:center;">Total: <span id="cartTotal">0</span> FCFA</h3>
+  <button class="btn" onclick="checkoutWhatsApp()">Commander sur WhatsApp</button>
+  <button class="btn" style="background:#666;" onclick="hideCart()">Fermer</button>
 </div>
 
 <footer>
-© 2026 ALHAYA - Tous droits réservés
+  <p>© 2026 ALHAYA BY NOUR - Abidjan, Côte d'Ivoire</p>
+  <p style="font-size: 12px; color: #888;">Qualité supérieure | Livraison rapide</p>
 </footer>
+
+<script>
+// ===== TES IMAGES LOCALES =====
+const produits = [
+  {
+    nom: "Ensemble Jupe - Noir", 
+    prix: 30000, 
+    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52.jpeg"
+  },
+  {
+    nom: "Abaya Safiya - Olive", 
+    prix: 32000, 
+    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52 (1).jpeg"
+  },
+  {
+    nom: "Abaya Simple - Bleu", 
+    prix: 25000, 
+    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53 (1).jpeg"
+  },
+  {
+    nom: "Abaya Nour - Rose", 
+    prix: 35000, 
+    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.52 (2).jpeg"
+  },
+  {
+    nom: "Abaya Simple - Gris", 
+    prix: 25000, 
+    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53 (3).jpeg"
+  },
+  {
+    nom: "Abaya Classic", 
+    prix: 28000, 
+    image: "c:/Users/HP ENVY/Downloads/image albaya/WhatsApp Image 2026-03-14 at 00.11.53.jpeg"
+  }
+];
+
+function displayProducts(list){
+  let grid = document.getElementById("productGrid");
+  grid.innerHTML = "";
+  list.forEach((p,i)=>{
+    grid.innerHTML += `
+    <div class="product-card">
+      <img src="${p.image}" alt="${p.nom}" onerror="this.src='https://via.placeholder.com/300x400?text=Image+Non+Trouvée'">
+      <h4>${p.nom}</h4>
+      <p>${p.prix.toLocaleString()} FCFA</p>
+      <button class="btn" onclick="addToCart(${produits.indexOf(p)})">Ajouter au panier</button>
+    </div>`;
+  });
+}
+
+function searchProduct(){
+  let term = document.getElementById("searchInput").value.toLowerCase();
+  let filtered = produits.filter(p => p.nom.toLowerCase().includes(term));
+  displayProducts(filtered);
+}
+
+let cart = [];
+function addToCart(i){
+  cart.push(produits[i]);
+  updateCart();
+  showCart();
+}
+
+function updateCart(){
+  let itemsDiv = document.getElementById("cartItems");
+  let countSpan = document.getElementById("cartCount");
+  let total = 0;
+  itemsDiv.innerHTML = "";
+  
+  cart.forEach((p, idx)=>{ 
+    total += p.prix; 
+    itemsDiv.innerHTML += `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; font-size:14px;">
+        <span>${p.nom}</span>
+        <b>${p.prix.toLocaleString()} FCFA</b>
+      </div>`; 
+  });
+  
+  document.getElementById("cartTotal").innerText = total.toLocaleString();
+  countSpan.innerText = cart.length > 0 ? `(${cart.length})` : '';
+}
+
+function showCart(){document.getElementById("cartPopup").style.display="block";}
+function hideCart(){document.getElementById("cartPopup").style.display="none";}
+
+function checkoutWhatsApp(){
+  if(cart.length==0){alert("Le panier est vide !");return;}
+  let message = `Bonjour ALHAYA,%0AJe souhaite commander :%0A`;
+  let total=0;
+  cart.forEach(p=>{ message += `- ${p.nom} (${p.prix.toLocaleString()} FCFA)%0A`; total += p.prix; });
+  message += `%0ATotal: ${total.toLocaleString()} FCFA%0A%0AMes infos :%0ANom:%0AVille:`;
+  window.open(`https://wa.me/2250778136527?text=${message}`);
+}
+
+function showSection(id){
+  document.getElementById('shop').style.display = 'block';
+}
+
+// Lancement
+displayProducts(produits);
+</script>
 
 </body>
 </html>
